@@ -30,7 +30,7 @@ while True:
     roi = frame[y1:y2, x1:x2]
     
     # 预处理
-    img = cv2.resize(roi, (224, 224))
+    img = cv2.resize(roi, (450, 450))
     img_array = tf.keras.applications.efficientnet.preprocess_input(img)
     img_array = np.expand_dims(img_array, axis=0)
     

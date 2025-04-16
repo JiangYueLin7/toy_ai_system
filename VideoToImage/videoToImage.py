@@ -1,7 +1,7 @@
 import cv2
 import os
 
-def video_to_images(video_path, output_folder, frame_interval=1):
+def video_to_images(video_path, output_folder):
     # 创建输出文件夹
     if not os.path.exists(output_folder):
         os.makedirs(output_folder)
@@ -32,5 +32,29 @@ def video_to_images(video_path, output_folder, frame_interval=1):
     cap.release()
     print(f"成功提取{saved_count}张图片至{output_folder}")
 
+def video_to_images(video_path, output_folder, frame_interval=1):
+    # 创建输出文件夹
+    if not os.path.exists(output_folder):
+        os.makedirs(output_folder)
+    
+    # 读取视频
+    cap = cv2.VideoCapture(video_path)
+    
+    count = 0
+    saved_count = 0
+    while cap.isOpened():
+        ret, frame = cap.read()
+        if not ret:
+            break
+        if count % frame_interval == 0:
+            img_path = os.path.join(output_folder, f"frame_{saved_count:04d}.jpg")
+            cv2.imwrite(img_path, frame)
+            saved_count += 1
+        count += 1
+    
+    cap.release()
+    print(f"成功提取{saved_count}张图片至{output_folder}")
+
+
 # 使用示例
-video_to_images("apple.mp4", "output_images", frame_interval=1)
+video_to_images("bobo.mp4", "output_images", frame_interval=5)
