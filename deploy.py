@@ -1,8 +1,17 @@
 import cv2
 import numpy as np
 import tensorflow as tf
+from tensorflow import keras
 import json
 import time
+
+# Define custom Cast layer
+class Cast(tf.keras.layers.Layer):
+    def __init__(self, **kwargs):
+        super().__init__(**kwargs)
+    
+    def call(self, inputs):
+        return tf.cast(inputs, dtype=tf.float32)
 
 # 配置参数
 MODEL_PATH = "trained_models/toy_model.h5"
@@ -10,7 +19,7 @@ LABEL_PATH = "trained_models/class_indices.json"
 CROP_RECT = (400, 200, 800, 600)  # 根据实际拍摄框调整 (x1,y1,x2,y2)
 
 # 加载模型和标签
-model = tf.keras.models.load_model(MODEL_PATH)
+model = tf.keras.models.load_model(MODEL_PATH, custom_objects={'Cast': Cast})
 with open(LABEL_PATH, 'r') as f:
     class_indices = json.load(f)
     classes = list(class_indices.keys())
@@ -19,6 +28,7 @@ with open(LABEL_PATH, 'r') as f:
 cap = cv2.VideoCapture(0)
 cap.set(cv2.CAP_PROP_FRAME_WIDTH, 1280)
 cap.set(cv2.CAP_PROP_FRAME_HEIGHT, 720)
+cap.set(cv2.CAP_PROP_BUFFERSIZE, 1)  # [4,6](@ref)
 
 while True:
     ret, frame = cap.read()

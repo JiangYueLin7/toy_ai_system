@@ -1,4 +1,3 @@
-# common.py
 import tensorflow as tf
 from tensorflow.keras.preprocessing.image import ImageDataGenerator
 from tensorflow.keras.applications import EfficientNetB5
@@ -24,12 +23,6 @@ def create_data_generator(
         horizontal_flip=True,
         vertical_flip=True,
         validation_split=validation_split
-    ).flow_from_directory(
-        directory=data_path,
-        target_size=target_size,
-        batch_size=batch_size,
-        class_mode=class_mode,
-        subset='training'  # 默认使用训练集
     )
 
 def build_base_model(input_shape=(450, 450, 3)):
