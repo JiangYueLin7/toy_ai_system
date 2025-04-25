@@ -14,6 +14,9 @@ import random
 from filelock import FileLock
 import matplotlib.pyplot as plt
 from collections import defaultdict
+from PIL import Image
+import imagehash
+
 
 # 定义全局变量
 FEATURE_CACHE = {}  # 缓存特征向量
