@@ -10,3 +10,7 @@
    如果没有预处理，直接执行 train.py，可能会出现执行了几个小时再报错的情况。比如学习率错误等。
 5. train.py 训练程序，它会有高特征值的原数据，是健康的可训练程序，可能会执行十几个小时更久。
 6. deploy.py 部署程序，笔记本上可直接运行，会调用笔记本摄像头进行图像识别。
+
+
+Effect:
+https://github.com/JiangYueLin7/toy_ai_system/blob/main/Effect/effect.mp4
