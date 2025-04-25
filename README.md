@@ -13,4 +13,7 @@
 
 
 Effect:
-https://github.com/JiangYueLin7/toy_ai_system/blob/main/Effect/effect.mp4
+<video src="https://github.com/JiangYueLin7/toy_ai_system/blob/main/Effect/effect.mp4" controls width="640" height="480">
+效果展示
+</video>
+
